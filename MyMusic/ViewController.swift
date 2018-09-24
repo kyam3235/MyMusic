@@ -51,5 +51,30 @@ class ViewController: UIViewController {
             print("ギターでエラーが発生しました")
         }
     }
+    
+    //バックミュージックの音源ファイルを指定
+    let backmusicPath = Bundle.main.bundleURL.appendingPathComponent("backmusic.mp3")
+    
+    //バックミュージック用のプレーヤーインスタンを作成
+    var backmusicPlayer = AVAudioPlayer()
+    
+    @IBAction func play(_ sender: Any) {
+        do{
+            //バックミュージック用のプレイヤーに、音源ファイル名を指定
+            backmusicPlayer = try AVAudioPlayer(contentsOf: backmusicPath, fileTypeHint: nil)
+            
+            //リピート設定
+            backmusicPlayer.numberOfLoops = -1
+            //バックミュージックの音源再生
+            backmusicPlayer.play()
+        }catch{
+            print("エラーが発生しました")
+        }
+    }
+    
+    @IBAction func stop(_ sender: Any) {
+        //バックミュージックの停止
+        backmusicPlayer.stop()
+    }
 }
 
