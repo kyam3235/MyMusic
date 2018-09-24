@@ -33,5 +33,23 @@ class ViewController: UIViewController {
             print("シンバルでエラーが発生しました")
         }
     }
+    
+    //ギターの音源ファイルを指定
+    let guitarPath = Bundle.main.bundleURL.appendingPathComponent("guitar.mp3")
+
+    //ギター用のプレ-ヤーインスタンスを作成
+    var guitarPlayer = AVAudioPlayer()
+    
+    @IBAction func guitar(_ sender: Any) {
+        do{
+            //ギター用のプレイヤーに、音源ファイル名を指定
+            guitarPlayer = try AVAudioPlayer(contentsOf: guitarPath, fileTypeHint: nil)
+            
+            //ギターの音源再生
+            guitarPlayer.play()
+        }catch{
+            print("ギターでエラーが発生しました")
+        }
+    }
 }
 
